@@ -6,13 +6,15 @@ import torch
 from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+# Define the device (CPU)
+device = torch.device("cpu")
 
 with open('intents.json', 'r') as json_data:
     intents = json.load(json_data)
 
 FILE = "data.pth"
-data = torch.load(FILE)
+data = torch.load(FILE, map_location=torch.device('cpu'))
 
 input_size = data["input_size"]
 hidden_size = data["hidden_size"]
