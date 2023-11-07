@@ -55,8 +55,19 @@ class Chatbox {
             },
           })
           .then(r => r.json())
+
+
+
           .then(r => {
-            let msg2 = { name: "Sam", message: r.answer };
+
+          if (r.answer === "I do not understand...") {
+              // If the response is "I do not understand...", create an email input form
+              r.answer = '<div>Leave your email, we will help you:</div>' +
+                  '<input type="email" placeholder="Your email" style="border: 1px solid #f9f9f9; border-radius: 5px; padding: 8px; margin-top: 10px; font-size: 14px; width: 100%; margin-right: 5px;"> ' +
+                  '<button class="submit-email-button" style="background-color: #d8acfc; color: #fff; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">Submit</button>';
+          }
+          
+            let msg2 = { name: "Marita", message: r.answer };
             this.messages.push(msg2);
             this.updateChatText(chatbox)
             textField.value = ''
@@ -71,7 +82,7 @@ class Chatbox {
     updateChatText(chatbox) {
         var html = '';
         this.messages.slice().reverse().forEach(function(item, index) {
-            if (item.name === "Sam")
+            if (item.name === "Marita")
             {
                 html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
             }

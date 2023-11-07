@@ -4,6 +4,10 @@ from chat import get_response
 
 app = Flask(__name__)
 
+
+
+
+
 @app.get("/")
 def index_get():
     return render_template("base.html")
@@ -12,6 +16,16 @@ def index_get():
 def predict():
     text = request.get_json().get("message")
     response = get_response(text)
+
+#     if response == "I do not understand...":
+#         response = "Leave your email, we will help you?"
+
+
+    if "@" in text:
+        response = "Thank you for your email. We'll be in touch as soon as possible!"
+
+
+
     message = {"answer": response}
     return jsonify(message)
 
