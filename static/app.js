@@ -1,3 +1,25 @@
+
+// Define the submitEmail() function
+function submitEmail() {
+    // Capture the email entered by the user
+    const emailInput = document.getElementById('email-input');
+    const email = emailInput.value;
+
+    // Replace the button with a "Submit Successfully" message
+    const button = document.querySelector('.submit-email-button');
+    button.innerHTML = "Submit Successfully";
+
+    // Disable the button so the user cannot click it again
+    button.disabled = true;
+
+    // Hide the email input field
+    emailInput.style.display = 'none'; // or you can use emailInput.style.display = 'hidden'; to hide it
+}
+
+// Your existing code...
+
+
+
 class Chatbox {
     constructor() {
         this.args = {
@@ -63,10 +85,17 @@ class Chatbox {
           if (r.answer === "I do not understand...") {
               // If the response is "I do not understand...", create an email input form
               r.answer = '<div>Leave your email, we will help you:</div>' +
-                  '<input type="email" placeholder="Your email" style="border: 1px solid #f9f9f9; border-radius: 5px; padding: 8px; margin-top: 10px; font-size: 14px; width: 100%; margin-right: 5px;"> ' +
-                  '<button class="submit-email-button" style="background-color: #d8acfc; color: #fff; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">Submit</button>';
+                  '<input type="email" id="email-input" placeholder="Your email" style="border: 1px solid #f9f9f9; border-radius: 5px; padding: 8px; margin-top: 10px; font-size: 14px; width: 100%; margin-right: 5px;"> ' +
+                  '<button class="submit-email-button" style="background-color: #d8acfc; color: #fff; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;" onclick="submitEmail()">Submit</button>'
+
+
+
           }
-          
+
+
+
+
+
             let msg2 = { name: "Marita", message: r.answer };
             this.messages.push(msg2);
             this.updateChatText(chatbox)
