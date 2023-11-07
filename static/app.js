@@ -67,6 +67,7 @@ class Chatbox {
 
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
+        console.log(msg1)
 
         fetch('http://127.0.0.1:5000/predict', {
             method: 'POST',
@@ -94,14 +95,14 @@ class Chatbox {
 
 
 
-
-
             let msg2 = { name: "Marita", message: r.answer };
             this.messages.push(msg2);
             this.updateChatText(chatbox)
             textField.value = ''
 
-        }).catch((error) => {
+            console.log(msg2)
+
+          }).catch((error) => {
             console.error('Error:', error);
             this.updateChatText(chatbox)
             textField.value = ''
@@ -125,7 +126,6 @@ class Chatbox {
         chatmessage.innerHTML = html;
     }
 }
-
 
 const chatbox = new Chatbox();
 chatbox.display();
